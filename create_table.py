@@ -27,7 +27,20 @@ for lyricsFile in fileList:
     # now_index = len(song_index) - 1
     length = 0
 
-    print(lyricsFile[:-4]) #去掉副檔名
+    print(song_name) #去掉副檔名
+
+    ## 歌名斷詞
+    tokens = list(rmsw(song_name, flag=True)) # 斷詞
+    for num in range(len(tokens)):
+        if (tokens[num][1] in n and len(tokens[num][0]) > 1): ## 是名詞且大於一個字
+            token = tokens[num][0]
+            if token not in inverted_index:
+                inverted_index[token] = {song_name: 1}
+            else:
+                if song_name not in inverted_index[token]:
+                    inverted_index[token][song_name] = 1
+                else:
+                    inverted_index[token][song_name] += 1
 
     ## 讀歌詞檔
     fullpath = join(lyricsPath, lyricsFile)
