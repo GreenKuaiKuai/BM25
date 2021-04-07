@@ -31,6 +31,7 @@ for lyricsFile in fileList:
 
     ## 歌名斷詞
     tokens = list(rmsw(song_name, flag=True)) # 斷詞
+    length += len(tokens)
     for num in range(len(tokens)):
         if (tokens[num][1] in n and len(tokens[num][0]) > 1): ## 是名詞且大於一個字
             token = tokens[num][0]
