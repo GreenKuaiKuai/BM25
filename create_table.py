@@ -33,7 +33,7 @@ for lyricsFile in fileList:
     tokens = list(rmsw(song_name, flag=True)) # 斷詞
     length += len(tokens)
     for num in range(len(tokens)):
-        if (tokens[num][1] in n and len(tokens[num][0]) > 1): ## 是名詞且大於一個字
+        if (tokens[num][1] in n ): ## 是名詞且大於一個字
             token = tokens[num][0]
             if token not in inverted_index:
                 inverted_index[token] = {song_name: 1}
@@ -52,7 +52,7 @@ for lyricsFile in fileList:
             length += len(tokens)
 
             for num in range(len(tokens)):
-                if (tokens[num][1] in n and len(tokens[num][0]) > 1): ## 是名詞且大於一個字
+                if (tokens[num][1] in n ): ## 是名詞且大於一個字
                     token = tokens[num][0]
                     if token not in inverted_index:
                         inverted_index[token] = {song_name: 1}
@@ -72,7 +72,7 @@ print("全部文章長度: "+ str(all_length) )
 # print(song_length)
 
 ## 儲存反向索引表
-with open('inverted_index.json', 'w') as outfile:  
+with open('inverted_index_2.json', 'w') as outfile:  
     json.dump(inverted_index, outfile)
 
 # with open('song_index.json', 'w') as outfile:  
